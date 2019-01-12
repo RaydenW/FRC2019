@@ -26,13 +26,5 @@ class HatchServo : public frc::Subsystem {
 
   void setPosition(double pos);
 
-  double getPosition();
-
-
   void InitDefaultCommand();
-
-  /*------------
-  Unused Commands: DispenseBall, MoveDispenserServo
-  Unused Methods: getPosition
-  -------------*/
 };

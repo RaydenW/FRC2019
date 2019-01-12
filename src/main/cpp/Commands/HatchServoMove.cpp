@@ -24,9 +24,13 @@ HatchServoMove::HatchServoMove() {
 
 // Called just before this Command runs the first time
 void HatchServoMove::Initialize() {
-  Robot::m_hatchServo->switchOpenStatus();
-  Robot::m_hatchServo->setPosition(0.5);
-  std::cout << "open" << std::endl;
+  if(Robot::m_hatchServo->getOpenStatus()){
+    Robot::m_hatchServo->setPosition(0.0);
+  }
+  else{
+    Robot::m_hatchServo->setPosition(0.5);
+  }
+  //std::cout << "open" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -36,15 +40,11 @@ void HatchServoMove::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool HatchServoMove::IsFinished() { 
-  if(!Robot::m_hatchServo->getOpenStatus()){
-    return true;
-  }
-  else{
-    return false; 
-  }
+  return true;
 }
 // Called once after isFinished returns true
 void HatchServoMove::End() {
+  Robot::m_hatchServo->switchOpenStatus();
 }
 
 // Called when another command which requires one or more of the same
