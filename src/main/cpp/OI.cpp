@@ -9,27 +9,12 @@
 
 #include <WPILib.h>
 
-#include "Commands/MoveArm.h"
-#include "Commands/ManualMoveArm.h"
-#include "Commands/DispenseBall.h"
-#include "Commands/BallServoOpen.h"
-#include "Commands/BallServoClose.h"
-#include "COmmands/ManualMoveArmStop.h"
+#include "Commands/HatchServoMove.h"
 
 
-OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)), moveArmBut(new JoystickButton(rightJoy, 3)), 
-manualMoveArmButDown(new JoystickButton(leftJoy, 4)), manualMoveArmButUp(new JoystickButton(leftJoy, 6)),
-dispenseBallBut(new JoystickButton(rightJoy, 1)), manualDispenseBallBut(new JoystickButton(leftJoy, 7)){
+OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)), HatchServoBut(new JoystickButton(rightJoy, 1)){
   // Process operator interface input here.
-  moveArmBut->WhenPressed(new MoveArm());
-  dispenseBallBut->WhenPressed(new DispenseBall());
-  manualDispenseBallBut->WhenPressed(new BallServoOpen());
-  manualDispenseBallBut->WhenReleased(new BallServoClose());
-
-  manualMoveArmButDown->WhenPressed(new ManualMoveArm(0));
-  manualMoveArmButDown->WhenReleased(new ManualMoveArmStop());
-  manualMoveArmButUp->WhenPressed(new ManualMoveArm(1));
-  manualMoveArmButUp->WhenReleased(new ManualMoveArmStop());
+  HatchServoBut->WhenPressed(new HatchServoMove());
 }
 
 Joystick* OI::getLeft(){

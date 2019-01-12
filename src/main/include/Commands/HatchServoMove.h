@@ -9,13 +9,11 @@
 
 #include <Commands/Command.h>
 
-  //----------------UNUSED----------------//
-
-class MoveDispenserServo : public frc::Command {
+class HatchServoMove : public frc::Command {
  private:
-  bool isOpen;
+ // double pos;
  public:
-  MoveDispenserServo();
+  HatchServoMove();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

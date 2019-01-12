@@ -5,48 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "HatchServoExtend.h"
+#include "Commands/MyAutoCommand.h"
 
+#include "Robot.h"
 
-#include "../../include/Robot.h"
-#include "../../include/OI.h"
-#include "WPILib.h"
-
-#include <iostream>
-using namespace std;
-
-HatchServoExtend() {
+MyAutoCommand::MyAutoCommand() {
   // Use Requires() here to declare subsystem dependencies
-  // eg. Requires(Robot::chassis.get());
-  //pos = p;
-  Requires(Robot::m_ballDispenser);
+  Requires(&Robot::m_subsystem);
 }
 
 // Called just before this Command runs the first time
-HatchServoExtend::Initialize() {
-  Robot::m_ballDispenser->switchOpenStatus();
-  Robot::m_ballDispenser->setPosition(0.5);
-  std::cout << "open" << std::endl;
-}
+void MyAutoCommand::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-HatchServoExtend::Execute() {
-
-}
+void MyAutoCommand::Execute() {}
 
 // Make this return true when this Command no longer needs to run execute()
-HatchServoExtend::IsFinished() { 
-  if(!Robot::m_ballDispenser->getOpenStatus()){
-    return true;
-  }
-  else{
-    return false; 
-  }
-}
+bool MyAutoCommand::IsFinished() { return false; }
+
 // Called once after isFinished returns true
-HatchServoExtend::End() {
-}
+void MyAutoCommand::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-voHaHatchServoExtendtch::Interrupted() {}
+void MyAutoCommand::Interrupted() {}

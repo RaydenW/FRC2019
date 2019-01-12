@@ -9,11 +9,9 @@
 
 #include <Commands/Command.h>
 
-class HatchServoExtend : public frc::Command {
- private:
- // double pos;
+class MyAutoCommand : public frc::Command {
  public:
-  BallServoExtend();
+  MyAutoCommand();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

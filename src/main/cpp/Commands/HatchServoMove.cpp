@@ -5,60 +5,48 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Commands/MoveDispenserServo.h"
+#include "Commands/HatchServoMove.h"
+
 
 #include "../../include/Robot.h"
 #include "../../include/OI.h"
 #include "WPILib.h"
 
-  //----------------UNUSED----------------//
+#include <iostream>
+using namespace std;
 
-MoveDispenserServo::MoveDispenserServo(){
+HatchServoMove::HatchServoMove() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-    Requires(Robot::m_ballDispenser);
+  //pos = p;
+  Requires(Robot::m_hatchServo);
 }
 
 // Called just before this Command runs the first time
-void MoveDispenserServo::Initialize() {
-  isOpen = Robot::m_ballDispenser->getOpenStatus();
+void HatchServoMove::Initialize() {
+  Robot::m_hatchServo->switchOpenStatus();
+  Robot::m_hatchServo->setPosition(0.5);
+  std::cout << "open" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
-void MoveDispenserServo::Execute() {
-  if(isOpen){
-    Robot::m_ballDispenser->setPosition(0.0);
-  }
-  else{
-    Robot::m_ballDispenser->setPosition(0.5);
-  }
+void HatchServoMove::Execute() {
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool MoveDispenserServo::IsFinished() {
-  if(isOpen){
-    if(Robot::m_ballDispenser->getPosition() == 0){
-		  return true;
-	  }
-	  else{
-		  return false;
-    }
+bool HatchServoMove::IsFinished() { 
+  if(!Robot::m_hatchServo->getOpenStatus()){
+    return true;
   }
   else{
-    if(Robot::m_ballDispenser->getPosition() == 0.5){
-		  return true;
-	  }
-	  else{
-		  return false;
-    }
+    return false; 
   }
 }
-
 // Called once after isFinished returns true
-void MoveDispenserServo::End() {
-  Robot::m_ballDispenser->switchOpenStatus();
+void HatchServoMove::End() {
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MoveDispenserServo::Interrupted() {}
+void HatchServoMove::Interrupted() {}

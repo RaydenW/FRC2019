@@ -12,6 +12,7 @@
 #include <TimedRobot.h>
 
 #include "Commands/ExampleCommand.h"
+#include "Commands/MyAutoCommand.h"
 #include "OI.h"
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/DriveTrain.h"
